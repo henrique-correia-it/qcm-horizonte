@@ -1,0 +1,6 @@
+.superpowers/
+dist/
+.DS_Store
+*.log
+.env*
+.openai/*.local.json

@@ -1,0 +1,20 @@
+@keyframes hero-word{from{transform:translateY(112%) rotate(3deg);opacity:.1}to{transform:translateY(0) rotate(0);opacity:1}}
+@keyframes soft-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes photo-in{from{clip-path:inset(7% 0 0 0 round 180px 18px 18px 18px);opacity:.3;transform:translateY(15px)}to{clip-path:inset(0 round 180px 18px 18px 18px);opacity:1;transform:none}}
+@media(prefers-reduced-motion:no-preference){
+html:not([data-motion=reduce]) .hero .title-line{overflow:hidden;padding-bottom:.07em;margin-bottom:-.07em}
+html:not([data-motion=reduce]) .hero .title-line>span{display:block;animation:hero-word 1.15s var(--ease) both;transform-origin:0 100%}
+html:not([data-motion=reduce]) .hero .title-line:nth-child(2)>span{animation-delay:.11s}html:not([data-motion=reduce]) .hero .title-line:nth-child(3)>span{animation-delay:.22s}
+html:not([data-motion=reduce]) .hero-eyebrow{animation:soft-in .8s var(--ease) both;animation-delay:.05s}
+html:not([data-motion=reduce]) .hero-description{animation:soft-in .8s var(--ease) both;animation-delay:.35s}
+html:not([data-motion=reduce]) .hero-actions{animation:soft-in .8s var(--ease) both;animation-delay:.48s}
+html:not([data-motion=reduce]) .hero-footnote{animation:soft-in .8s var(--ease) both;animation-delay:.62s}
+html:not([data-motion=reduce]) .hero-figure{animation:photo-in 1.45s var(--ease) both;animation-delay:.12s}
+html:not([data-motion=reduce]) .reveal-pending{opacity:0;transform:translateY(28px);transition:opacity .85s var(--ease),transform .85s var(--ease);transition-delay:var(--reveal-delay,0ms)}
+html:not([data-motion=reduce]) .reveal-pending.is-visible{opacity:1;transform:none}
+html:not([data-motion=reduce]) .mobile-menu[open] nav a{animation:soft-in .65s var(--ease) both;animation-delay:calc(var(--i)*60ms)}
+}
+html[data-motion=reduce]{scroll-behavior:auto}html[data-motion=reduce] *,html[data-motion=reduce] *:before,html[data-motion=reduce] *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}html[data-motion=reduce] .reveal-pending{opacity:1;transform:none}html[data-motion=reduce] .hero-image img{transform:none;will-change:auto}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal-pending{opacity:1!important;transform:none!important}.hero-image img{transform:none!important;will-change:auto}}
+@media(hover:hover) and (pointer:fine){.project-card a,.news-card a{cursor:pointer}.round-link:hover .icon{transform:translate(1px,-1px)}}
+@media print{.site-header,.mobile-menu,.hero-scroll,.filter-bar,.motion-toggle,.scroll-line,.contact-band,.site-footer{display:none!important}body{background:#fff;color:#111}.wrap{width:100%}.section{padding-block:25px}.reveal-pending{opacity:1!important;transform:none!important}a{color:inherit}h1,h2{break-after:avoid}article,figure{break-inside:avoid}*{animation:none!important;transition:none!important}}

@@ -1,0 +1,194 @@
+[
+  {
+    "asset": "archive-63.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/646.jpg",
+    "type": "documentary",
+    "width": 259,
+    "height": 126,
+    "articleId": 63
+  },
+  {
+    "asset": "archive-60.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/643.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 60
+  },
+  {
+    "asset": "archive-65.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/651.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 65
+  },
+  {
+    "asset": "archive-71.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/657.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 124,
+    "articleId": 71
+  },
+  {
+    "asset": "archive-70.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/656.jpeg",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 70
+  },
+  {
+    "asset": "archive-69.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/655.jpg",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 69
+  },
+  {
+    "asset": "archive-68.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/654.jpeg",
+    "type": "documentary",
+    "width": 252,
+    "height": 138,
+    "articleId": 68
+  },
+  {
+    "asset": "archive-67.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/653.png",
+    "type": "documentary",
+    "width": 220,
+    "height": 127,
+    "articleId": 67
+  },
+  {
+    "asset": "archive-66.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/652.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 106,
+    "articleId": 66
+  },
+  {
+    "asset": "archive-64.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/649.jpeg",
+    "type": "documentary",
+    "width": 252,
+    "height": 141,
+    "articleId": 64
+  },
+  {
+    "asset": "archive-62.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/645.jpg",
+    "type": "documentary",
+    "width": 1440,
+    "height": 1920,
+    "articleId": 62
+  },
+  {
+    "asset": "archive-59.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/634.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 59
+  },
+  {
+    "asset": "archive-58.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/644.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 58
+  },
+  {
+    "asset": "archive-57.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/642.png",
+    "type": "documentary",
+    "width": 251,
+    "height": 125,
+    "articleId": 57
+  },
+  {
+    "asset": "archive-25.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/640.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 25
+  },
+  {
+    "asset": "archive-28.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/639.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 28
+  },
+  {
+    "asset": "archive-51.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/632.jpeg",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 51
+  },
+  {
+    "asset": "archive-54.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/634.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 54
+  },
+  {
+    "asset": "archive-55.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/635.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 55
+  },
+  {
+    "asset": "archive-53.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/634.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 53
+  },
+  {
+    "asset": "archive-52.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/633.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 52
+  },
+  {
+    "asset": "archive-56.webp",
+    "source": "https://q-cm.pt/client/image/0000000001/636.png",
+    "type": "documentary",
+    "width": 252,
+    "height": 126,
+    "articleId": 56
+  },
+  {
+    "asset": "concept-energy-*.webp",
+    "type": "illustrative-ai",
+    "source": "Original concept generated in this chat; not a Q.CM project photograph."
+  },
+  {
+    "asset": "qcm-symbol.png",
+    "type": "original-brand",
+    "source": "https://q-cm.pt/images/logoq_cm.png",
+    "preparation": "Resized encoding copy; original shape and transparency preserved."
+  },
+  {
+    "asset": "qcm-share.png",
+    "type": "original-brand-composition",
+    "source": "Original Q.CM symbol and Manrope typography on the approved brand blue; generic social sharing preview."
+  }
+]
