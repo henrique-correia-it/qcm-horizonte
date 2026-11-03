@@ -39,7 +39,7 @@ A pasta `dist/` é gerada para alojamento estático. As páginas usam endereços
 - `src/app.mjs` e `src/filters.mjs`: navegação, pesquisa e preferências.
 - `public/assets/`: imagens, símbolo e fontes.
 - `scripts/`: geração, verificação e pré-visualização.
-- `tests/`: 24 testes de comportamento, conteúdo e publicação.
+- `tests/`: 25 testes de comportamento, conteúdo e publicação.
 - `docs/asset-provenance.json`: proveniência das imagens.
 
 ## Conteúdos e imagens

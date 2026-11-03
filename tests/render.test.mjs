@@ -69,3 +69,18 @@ test('the contact page embeds the real address map with an accessible title and 
   const info=getPages({site,services,projects,news}).find(p=>p.path==='/informacao/');
   assert.match(info.body,/mapa incorporado.*Google Maps/);
 });
+
+test('the solar presentation uses a labelled HD illustration while preserving the documentary archive',()=>{
+ const pages=getPages({site,services,projects,news});
+ const index=pages.find(p=>p.path==='/projetos/');
+ assert.match(index.body,/solar-presentation-hd.webp/);
+ assert.match(index.body,/class="media-disclosure">Imagem ilustrativa/);
+ assert.match(index.body,/width="1536" height="1024"/);
+ const detail=pages.find(p=>p.path==='/projetos/solar-zamora/');
+ assert.match(detail.body,/<figcaption>Imagem ilustrativa/);
+ assert.match(renderDocument({...detail,origin:site.origin}),/property="og:image" content="[^\"]*qcm-share.png"/);
+ const article=news.find(n=>n.id===63);
+ const archive=pages.find(p=>p.path===`/noticias/${article.slug}/`);
+ assert.match(archive.body,/archive-63.webp/);
+ assert.doesNotMatch(archive.body,/solar-presentation-hd.webp/);
+});

@@ -190,5 +190,13 @@
     "asset": "qcm-share.png",
     "type": "original-brand-composition",
     "source": "Original Q.CM symbol and Manrope typography on the approved brand blue; generic social sharing preview."
+  },
+  {
+    "asset": "solar-presentation-hd.webp",
+    "type": "illustrative-ai",
+    "width": 1536,
+    "height": 1024,
+    "source": "Original image generated with the built-in imagegen tool in this chat. Explicitly illustrative; not a documentary photograph of the Zamora project.",
+    "usage": "Presentation card and case overview only. Original archive-63.webp preserved in the historical article."
   }
 ]

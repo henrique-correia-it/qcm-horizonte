@@ -89,3 +89,4 @@
  .map-footer>span{gap:6px}
 }
 @media(max-width:370px){.map-footer{flex-direction:column;align-items:flex-start;gap:7px}}
+.media-disclosure{position:absolute;bottom:19px;left:18px;padding:5px 9px;border-radius:4px;background:#f6f6f1f0;color:#34394c;font-size:11px;line-height:1.5;max-width:calc(100% - 95px)}
