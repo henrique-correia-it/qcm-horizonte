@@ -87,7 +87,7 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
 }
 try{initCollections();}catch(error){console.warn('The collection remains fully available.',error)}
 
-if(location.pathname==='/contactos/'){
+if(location.pathname.endsWith('/contactos/')){
  const areas={'energia-e-mobilidade':'Energia e mobilidade',telecomunicacoes:'Telecomunicações','arquitetura-e-construcao':'Arquitetura e construção','consultoria-e-gestao':'Consultoria e gestão','economia-de-proximidade':'Economia de proximidade','inovacao-e-desenvolvimento':'Inovação e desenvolvimento'};
  const area=areas[new URLSearchParams(location.search).get('area')];
  if(area){const link=document.querySelector('.contact-option-main');if(link)link.href=`mailto:contato@q-cm.pt?subject=${encodeURIComponent('Projeto — '+area)}`;}

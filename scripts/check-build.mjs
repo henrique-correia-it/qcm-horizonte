@@ -2,6 +2,7 @@ import {readdir,readFile,stat} from 'node:fs/promises';
 import {resolve,join,dirname,relative,sep} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {site} from '../src/data/site.mjs';
+import {publicationConfig} from '../src/publication.mjs';
 
 async function filesUnder(root){
  const result=[];
@@ -11,8 +12,9 @@ async function filesUnder(root){
  }
  return result;
 }
-export async function checkBuild({root=resolve('dist'),origin=site.origin}={}){
+export async function checkBuild({root=resolve('dist'),origin=process.env.PUBLIC_SITE_URL||site.origin}={}){
  root=resolve(root);
+ const publication=publicationConfig(origin);
  const files=await filesUnder(root),htmlFiles=files.filter(p=>p.endsWith('.html'));
  const errors=[],titles=new Set(),documents=new Map();let checkedLinks=0;
  for(const file of htmlFiles){
@@ -28,11 +30,13 @@ export async function checkBuild({root=resolve('dist'),origin=site.origin}={}){
  }
  async function checkReference(raw,file){
   if(!raw||/^(?:data:|mailto:|tel:|javascript:)/i.test(raw))return;
-  const route='/'+relative(root,file).replaceAll(sep,'/').replace(/index\.html$/,'');
+  const route=publication.basePath+'/'+relative(root,file).replaceAll(sep,'/').replace(/index\.html$/,'');
   let url;
   try{url=new URL(raw.replaceAll('&amp;','&'),new URL(route,origin));}catch{errors.push(`${relative(root,file)}: invalid URL ${raw}`);return;}
   if(url.origin!==new URL(origin).origin)return;
-  let target=resolve(root,'.'+decodeURIComponent(url.pathname));
+  if(publication.basePath&&url.pathname!==publication.basePath&&!url.pathname.startsWith(publication.basePath+'/')){errors.push(`${raw}: reference leaves public base path`);return;}
+  const pathname=publication.basePath?url.pathname.slice(publication.basePath.length)||'/':url.pathname;
+  let target=resolve(root,'.'+decodeURIComponent(pathname));
   if(target!==root&&!target.startsWith(root+sep)){errors.push(`${raw}: reference escapes build`);return;}
   try{if((await stat(target)).isDirectory())target=join(target,'index.html');await stat(target);}catch{errors.push(`${relative(root,file)}: missing ${raw}`);return;}
   checkedLinks++;

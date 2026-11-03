@@ -39,7 +39,7 @@ A pasta `dist/` é gerada para alojamento estático. As páginas usam endereços
 - `src/app.mjs` e `src/filters.mjs`: navegação, pesquisa e preferências.
 - `public/assets/`: imagens, símbolo e fontes.
 - `scripts/`: geração, verificação e pré-visualização.
-- `tests/`: 21 testes de comportamento, conteúdo e publicação.
+- `tests/`: 24 testes de comportamento, conteúdo e publicação.
 - `docs/asset-provenance.json`: proveniência das imagens.
 
 ## Conteúdos e imagens
@@ -47,3 +47,11 @@ A pasta `dist/` é gerada para alojamento estático. As páginas usam endereços
 O arquivo preserva as datas entre 2018 e 2022. Os projetos usam dados documentados da empresa. A imagem principal é conceptual e está identificada como ilustrativa; as fotografias dos casos provêm do arquivo publicado pela Q.CM. Os contactos são diretos por e-mail, telefone e mapa.
 
 O símbolo Q.CM, as marcas e as fotografias pertencem aos respetivos titulares. A licença da fonte Manrope está incluída em `public/assets/Manrope-OFL.txt`.
+
+## GitHub Pages
+
+Endereço: https://henrique-correia-it.github.io/qcm-horizonte/
+
+A publicação é automática quando há alterações no ramo `main`. O fluxo `.github/workflows/pages.yml` executa os testes, gera o site, verifica as ligações e publica a pasta `dist/`. Em **Settings → Pages → Source**, a origem deve ser **GitHub Actions**.
+
+O endereço público é recebido da configuração do Pages através de `PUBLIC_SITE_URL`. A geração adapta a navegação, as imagens responsivas, as fontes, os símbolos e os metadados ao caminho do repositório. Para outro alojamento, definir essa variável com o endereço final, incluindo o caminho, antes de gerar o site.
