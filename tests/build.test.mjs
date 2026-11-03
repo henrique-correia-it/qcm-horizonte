@@ -39,6 +39,7 @@ test('the complete build works under a GitHub Pages repository path',async()=>{
   assert.equal(result.status,0,result.stderr);
   const html=await readFile(resolve('dist/index.html'),'utf8');
   assert.match(html,/href="\/qcm-horizonte\/areas\/"/);
+  assert.match(html,/href="\/qcm-horizonte\/assets\/layout\.css\?v=[a-f0-9]{12}"/);
   assert.match(html,/rel="canonical" href="https:\/\/henrique-correia-it\.github\.io\/qcm-horizonte\/"/);
   assert.match(html,/property="og:image" content="https:\/\/henrique-correia-it\.github\.io\/qcm-horizonte\/assets\/qcm-share.png"/);
   assert.match(await readFile(resolve('dist/assets/base.css'),'utf8'),/url\('\/qcm-horizonte\/assets\/manrope-variable.woff2'\)/);

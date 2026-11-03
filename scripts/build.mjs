@@ -1,6 +1,7 @@
 import {mkdir,writeFile,readFile,cp,rm,lstat} from 'node:fs/promises';
 import {resolve,dirname,join,basename,sep} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
+import {createHash} from 'node:crypto';
 import {site,services,projects,news} from '../src/data/site.mjs';
 import {validateContent} from '../src/core.mjs';
 import {getPages} from '../src/render/pages.mjs';
@@ -17,13 +18,18 @@ export function outputPath(dist,route){
 export async function build(){
 const dist=join(root,'dist');
 const publication=publicationConfig(process.env.PUBLIC_SITE_URL||site.origin);
+const styleVersions=new Map();
 validateContent({services,projects,news});
 if(dirname(dist)!==root||basename(dist)!=='dist')throw new Error('Unsafe build output directory');
 try{if((await lstat(dist)).isSymbolicLink())throw new Error('Build output cannot be a symbolic link');}catch(error){if(error.code!=='ENOENT')throw error;}
 await rm(dist,{recursive:true,force:true});
 await mkdir(join(dist,'assets'),{recursive:true});
 await cp(join(root,'public'),dist,{recursive:true});
-for(const name of ['base.css','layout.css','motion.css'])await writeFile(join(dist,'assets',name),rebaseCss(await readFile(join(root,'src/styles',name),'utf8'),publication.basePath));
+for(const name of ['base.css','layout.css','motion.css']){
+ const css=rebaseCss(await readFile(join(root,'src/styles',name),'utf8'),publication.basePath);
+ await writeFile(join(dist,'assets',name),css);
+ styleVersions.set(name,createHash('sha256').update(css).digest('hex').slice(0,12));
+}
 for(const name of ['app.mjs','filters.mjs','core.mjs']){
  await cp(join(root,'src',name),join(dist,'assets',name));
 }
@@ -31,7 +37,7 @@ const pages=getPages({site,services,projects,news});
 for(const page of pages){
  const target=outputPath(dist,page.path);
  await mkdir(dirname(target),{recursive:true});
- const html=renderDocument({...page,path:publication.basePath+page.path,origin:publication.url});
+ const html=renderDocument({...page,path:publication.basePath+page.path,origin:publication.url}).replace(/href="\/assets\/([^"?]+\.css)"/g,(match,name)=>styleVersions.has(name)?`href="/assets/${name}?v=${styleVersions.get(name)}"`:match);
  await writeFile(target,rebaseHtml(html,publication.basePath));
 }
 const xml=pages.filter(p=>p.path!=='/404.html').map(p=>`<url><loc>${publication.url}${p.path}</loc></url>`).join('');
