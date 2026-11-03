@@ -69,6 +69,10 @@ export async function checkBuild({root=resolve('dist'),origin=process.env.PUBLIC
   const text=await readFile(file,'utf8');
   for(const match of text.matchAll(/url\(\s*['"]?([^)'"\s]+)['"]?\s*\)/g))await checkReference(match[1],file);
  }
+ for(const file of files.filter(p=>p.endsWith('.mjs'))){
+  const text=await readFile(file,'utf8');
+  for(const match of text.matchAll(/(?:from\s+|import\s*)(['"])(\.\/[^'"]+)\1/g))await checkReference(match[2],file);
+ }
  return {pages:htmlFiles.length,files:files.length,checkedLinks,errors};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){

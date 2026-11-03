@@ -6,7 +6,7 @@ import {site,services,projects,news} from '../src/data/site.mjs';
 import {validateContent} from '../src/core.mjs';
 import {getPages} from '../src/render/pages.mjs';
 import {renderDocument} from '../src/render/shell.mjs';
-import {publicationConfig,rebaseHtml,rebaseCss} from '../src/publication.mjs';
+import {publicationConfig,rebaseHtml,rebaseCss,versionModuleSources} from '../src/publication.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 export function outputPath(dist,route){
  dist=resolve(dist);
@@ -30,14 +30,17 @@ for(const name of ['base.css','layout.css','motion.css']){
  await writeFile(join(dist,'assets',name),css);
  styleVersions.set(name,createHash('sha256').update(css).digest('hex').slice(0,12));
 }
-for(const name of ['app.mjs','filters.mjs','core.mjs']){
- await cp(join(root,'src',name),join(dist,'assets',name));
+const moduleSources=new Map();
+for(const name of ['app.mjs','filters.mjs','core.mjs','experience.mjs'])moduleSources.set(name,await readFile(join(root,'src',name),'utf8'));
+for(const [name,result] of versionModuleSources(moduleSources)){
+ await writeFile(join(dist,'assets',name),result.code);
+ styleVersions.set(name,result.hash);
 }
 const pages=getPages({site,services,projects,news});
 for(const page of pages){
  const target=outputPath(dist,page.path);
  await mkdir(dirname(target),{recursive:true});
- const html=renderDocument({...page,path:publication.basePath+page.path,origin:publication.url}).replace(/href="\/assets\/([^"?]+\.css)"/g,(match,name)=>styleVersions.has(name)?`href="/assets/${name}?v=${styleVersions.get(name)}"`:match);
+ const html=renderDocument({...page,path:publication.basePath+page.path,origin:publication.url}).replace(/\b(href|src)="\/assets\/([^"?]+\.(?:css|mjs))"/g,(match,attribute,name)=>styleVersions.has(name)?`${attribute}="/assets/${name}?v=${styleVersions.get(name)}"`:match);
  await writeFile(target,rebaseHtml(html,publication.basePath));
 }
 const xml=pages.filter(p=>p.path!=='/404.html').map(p=>`<url><loc>${publication.url}${p.path}</loc></url>`).join('');

@@ -13,6 +13,11 @@ html:not([data-motion=reduce]) .hero-figure{animation:photo-in 1.45s var(--ease)
 html:not([data-motion=reduce]) .reveal-pending{opacity:0;transform:translateY(28px);transition:opacity .85s var(--ease),transform .85s var(--ease);transition-delay:var(--reveal-delay,0ms)}
 html:not([data-motion=reduce]) .reveal-pending.is-visible{opacity:1;transform:none}
 html:not([data-motion=reduce]) .mobile-menu[open] nav a{animation:soft-in .65s var(--ease) both;animation-delay:calc(var(--i)*60ms)}
+html:not([data-motion=reduce]) .competence-item[open] .disclosure-body,html:not([data-motion=reduce]) .faq-item[open] .disclosure-body{animation:soft-in .35s var(--ease) both}
+html:not([data-motion=reduce]) .guide-panel[role=tabpanel]:not([hidden]){animation:soft-in .45s var(--ease) both}
+html:not([data-motion=reduce]) .guide-panel[role=tabpanel]:not([hidden]) .guide-checklist li{animation:soft-in .45s var(--ease) both}
+html:not([data-motion=reduce]) .guide-panel[role=tabpanel]:not([hidden]) .guide-checklist li:nth-child(2){animation-delay:.06s}
+html:not([data-motion=reduce]) .guide-panel[role=tabpanel]:not([hidden]) .guide-checklist li:nth-child(3){animation-delay:.12s}
 }
 html[data-motion=reduce]{scroll-behavior:auto}html[data-motion=reduce] *,html[data-motion=reduce] *:before,html[data-motion=reduce] *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}html[data-motion=reduce] .reveal-pending{opacity:1;transform:none}html[data-motion=reduce] .hero-image img{transform:none;will-change:auto}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal-pending{opacity:1!important;transform:none!important}.hero-image img{transform:none!important;will-change:auto}}

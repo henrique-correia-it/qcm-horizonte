@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {publicationConfig,rebaseHtml,rebaseCss} from '../src/publication.mjs';
+import {publicationConfig,rebaseHtml,rebaseCss,versionModuleSources} from '../src/publication.mjs';
 
 test('publication configuration handles root and repository URLs without accepting unsafe URL components',()=>{
  assert.deepEqual(publicationConfig('https://example.com/qcm-horizonte/'),{origin:'https://example.com',basePath:'/qcm-horizonte',url:'https://example.com/qcm-horizonte'});
@@ -19,4 +19,16 @@ test('repository hosting rebases navigation responsive images and CSS while pres
  assert.match(result,/src="https:\/\/www.google.com\/maps\/embed\?pb=map"/);
  assert.match(result,/href="mailto:contato@q-cm.pt"/);
  assert.equal(rebaseCss("a{mask:url('/assets/logo.png')}b{src:url(https://example.org/a)}",'/qcm-horizonte'),"a{mask:url('/qcm-horizonte/assets/logo.png')}b{src:url(https://example.org/a)}");
+});
+
+test('a changed dependency refreshes the entry module URL as well as its nested imports',()=>{
+ const sources=new Map([['app.mjs',"import {value} from './filter.mjs';"],['filter.mjs',"export {value} from './core.mjs';"],['core.mjs','export const value=1;']]);
+ const first=versionModuleSources(sources);
+ assert.ok(first.get('app.mjs').code.includes(`./filter.mjs?v=${first.get('filter.mjs').hash}`));
+ assert.ok(first.get('filter.mjs').code.includes(`./core.mjs?v=${first.get('core.mjs').hash}`));
+ sources.set('core.mjs','export const value=2;');
+ const second=versionModuleSources(sources);
+ assert.notEqual(second.get('app.mjs').hash,first.get('app.mjs').hash);
+ assert.throws(()=>versionModuleSources(new Map([['app.mjs',"import './missing.mjs';"]])));
+ assert.throws(()=>versionModuleSources(new Map([['a.mjs',"import './b.mjs';"],['b.mjs',"import './a.mjs';"]])));
 });
