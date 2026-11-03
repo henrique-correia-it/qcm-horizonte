@@ -24,3 +24,15 @@ export function validateContent({services,projects,news}){
   }
   if(new Set(news.map(x=>x.id)).size!==news.length)throw new Error('Artigo duplicado');
 }
+
+const contactAreaLabels=Object.freeze({
+ 'energia-e-mobilidade':'Energia e mobilidade',
+ telecomunicacoes:'Telecomunicações',
+ 'arquitetura-e-construcao':'Arquitetura e construção',
+ 'consultoria-e-gestao':'Consultoria e gestão',
+ 'economia-de-proximidade':'Economia de proximidade',
+ 'inovacao-e-desenvolvimento':'Inovação e desenvolvimento'
+});
+export function resolveContactArea(value){
+ return typeof value==='string'&&Object.hasOwn(contactAreaLabels,value)?contactAreaLabels[value]:null;
+}

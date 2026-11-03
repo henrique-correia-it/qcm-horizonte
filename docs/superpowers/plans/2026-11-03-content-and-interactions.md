@@ -32,9 +32,9 @@
 
 **Interfaces:** `areaExperience[service.slug]` exposes `scopes[{body,points}]`, `questions[{question,answer}]`, `guide{title,body,inputs}`. Render helpers consume service + this data. `findInertAffordances(html): string[]` rejects plus/navigation icons with no anchor/button/summary owner.
 
-- [ ] Write tests for coverage of all 30 scopes, meaningful answers, native details, the real hero link, guide fallback and inert-affordance detection; run and observe RED.
-- [ ] Add bounded editorial content tied to the six published areas; use native details for all scopes and questions, add contact/case preparation content and the home guide.
-- [ ] Run all tests and the 46-page validator; expect PASS and no inert affordances. Commit.
+- [x] Write tests for coverage of all 30 scopes, meaningful answers, native details, the real hero link, guide fallback and inert-affordance detection; run and observe RED.
+- [x] Add bounded editorial content tied to the six published areas; use native details for all scopes and questions, add contact/case preparation content and the home guide.
+- [x] Run all tests and the 46-page validator; expect PASS and no inert affordances. Commit.
 
 ### Task 2: Progressive guide and considered motion
 
@@ -42,14 +42,14 @@
 
 **Interfaces:** `[data-solution-guide]`, `[data-guide-nav]`, `[data-guide-tab]`, `[data-guide-panel]`; enhancement adds tab roles, keyboard selection and hidden panels. `[data-contact-interest]` shows the allowlisted selected area. Version copied module dependencies as well as the entry point so published updates load consistently.
 
-- [ ] Verify new modules/assets are included in output and old versions cannot mask the interaction change; test dependency URL behavior before implementation.
-- [ ] Enhance the guide only after checking its complete structure; on failure leave panels visible. Add short selection/disclosure/focus motion under existing reduced-motion controls.
-- [ ] Browser-test all six choices, keyboard selection, native scope/FAQ expansion, selected contact interest, desktop and 320/390 px; run the full checks and commit.
+- [x] Verify new modules/assets are included in output and old versions cannot mask the interaction change; test dependency URL behavior before implementation.
+- [x] Enhance the guide only after checking its complete structure; on failure leave panels visible. Add short selection/disclosure/focus motion under existing reduced-motion controls.
+- [x] Browser-test all six choices, keyboard selection, native scope/FAQ expansion, selected contact interest, desktop and 320/390 px; run the full checks and commit.
 
 ### Task 3: Review, whole-site verification and publication
 
 **Files:** documentation, output audit and screenshots.
 
-- [ ] Request one fresh-context whole-change review against spec and Review Focus; fix Important/Critical findings with a failing regression check where applicable.
+- [x] Request one fresh-context whole-change review against spec and Review Focus; fix Important/Critical findings with a failing regression check where applicable.
 - [ ] Run full tests and artifact audit, update README and user-facing notes; commit and push the verified state.
 - [ ] Wait for successful GitHub Pages deployment, verify actual public interactions and retain a screenshot of an expanded scope and guide. Export updated source under outputs.

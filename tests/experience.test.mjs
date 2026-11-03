@@ -5,6 +5,7 @@ import {areaExperience,contactQuestions} from '../src/data/experience.mjs';
 import {getPages} from '../src/render/pages.mjs';
 import {renderDocument} from '../src/render/shell.mjs';
 import {findInertAffordances} from '../scripts/check-build.mjs';
+import {resolveContactArea} from '../src/core.mjs';
 
 test('every published scope has an explanation and practical points, with questions for all six areas',()=>{
  let count=0;
@@ -64,4 +65,10 @@ test('cases and contacts explain how to prepare a relevant first conversation',(
  const contact=pages.find(p=>p.path==='/contactos/');
  assert.match(contact.body,/data-contact-interest[^>]*hidden/);
  assert.equal((contact.body.match(/<details class="faq-item"/g)||[]).length,4);
+});
+
+test('contact interest accepts only the six own area keys and rejects inherited or arbitrary URL values',()=>{
+ for(const service of services)assert.equal(typeof resolveContactArea(service.slug),'string');
+ assert.equal(resolveContactArea('telecomunicacoes'),'Telecomunicações');
+ for(const invalid of ['__proto__','toString','constructor','hasOwnProperty','invalid','<script>alert(1)</script>',null,undefined])assert.equal(resolveContactArea(invalid),null);
 });

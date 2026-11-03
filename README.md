@@ -9,6 +9,8 @@ Site institucional da Q.CM, com uma apresentação editorial contemporânea, a i
 - 46 páginas estáticas: grupo, seis áreas, nove projetos, 23 publicações históricas, contactos, informação e 404.
 - Pesquisa sem exigir acentos, filtros por área e ano e projetos filtráveis.
 - Fotografias a preencher os cartões e Google Maps incorporado com a morada da empresa.
+- 30 âmbitos de atuação expansíveis, 22 perguntas frequentes e orientação prática nos projetos.
+- Guia de necessidades com seis escolhas, teclado e conteúdo legível sem JavaScript.
 - Menu móvel acessível, animações progressivas e preferência de movimento reduzido.
 - HTML legível sem JavaScript, fontes locais, imagens WebP, metadados e mapa do site.
 
@@ -39,7 +41,7 @@ A pasta `dist/` é gerada para alojamento estático. As páginas usam endereços
 - `src/app.mjs` e `src/filters.mjs`: navegação, pesquisa e preferências.
 - `public/assets/`: imagens, símbolo e fontes.
 - `scripts/`: geração, verificação e pré-visualização.
-- `tests/`: 25 testes de comportamento, conteúdo e publicação.
+- `tests/`: 32 testes de comportamento, conteúdo e publicação.
 - `docs/asset-provenance.json`: proveniência das imagens.
 
 ## Conteúdos e imagens
