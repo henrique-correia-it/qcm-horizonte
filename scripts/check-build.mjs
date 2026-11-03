@@ -12,6 +12,18 @@ async function filesUnder(root){
  }
  return result;
 }
+export function findInertAffordances(html){
+ const stack=[],issues=[];
+ const voidTags=new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
+ for(const token of html.matchAll(/<\/?([a-z][a-z0-9:-]*)\b[^>]*>/gi)){
+  const tag=token[1].toLowerCase(),markup=token[0];
+  if(markup.startsWith('</')){const at=stack.lastIndexOf(tag);if(at>=0)stack.length=at;continue;}
+  if(tag==='a'&&/\bhref\s*=\s*['"]#['"]/.test(markup))issues.push('placeholder link has no destination');
+  if(tag==='svg'&&/data-icon="(?:plus|arrow|right)"/.test(markup)&&!stack.some(t=>['a','button','summary'].includes(t)))issues.push(`${markup.match(/data-icon="([^"]+)"/)[1]} icon has no actionable owner`);
+  if(!voidTags.has(tag)&&!markup.endsWith('/>'))stack.push(tag);
+ }
+ return issues;
+}
 export async function checkBuild({root=resolve('dist'),origin=process.env.PUBLIC_SITE_URL||site.origin}={}){
  root=resolve(root);
  const publication=publicationConfig(origin);
@@ -20,6 +32,7 @@ export async function checkBuild({root=resolve('dist'),origin=process.env.PUBLIC
  for(const file of htmlFiles){
   const text=await readFile(file,'utf8');documents.set(file,text);
   const label=relative(root,file).replaceAll(sep,'/');
+  for(const issue of findInertAffordances(text))errors.push(`${label}: ${issue}`);
   const title=text.match(/<title>([\s\S]*?)<\/title>/i)?.[1];
   if(!title||titles.has(title))errors.push(`${label}: missing or duplicate title`);else titles.add(title);
   if((text.match(/<h1(?:\s|>)/gi)||[]).length!==1)errors.push(`${label}: expected one H1`);
